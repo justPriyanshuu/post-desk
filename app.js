@@ -26,6 +26,10 @@ app.get("/feedback", (req, res) => {
   res.render("feedback", { feedbacks });
 });
 
+app.get("/posts/new", (req, res) => {
+  res.render("posts/new");
+});
+
 app.post("/posts", (req, res) => {
   const { title, content } = req.body;
   const newPost = {
@@ -38,7 +42,7 @@ app.post("/posts", (req, res) => {
   res.redirect("/posts");
 });
 
-app.get("/post/:id", (req, res) => {
+app.get("/posts/:id", (req, res) => {
   const { id } = req.params;
   const post = posts.find((p) => p.id == id);
   if (!post) {
@@ -47,7 +51,7 @@ app.get("/post/:id", (req, res) => {
   res.render("posts/show", { post });
 });
 
-app.get("/post/:id/edit", (req, res) => {
+app.get("/posts/:id/edit", (req, res) => {
   const { id } = req.params;
   const post = posts.find((p) => p.id == id);
   if (!post) {
@@ -56,9 +60,9 @@ app.get("/post/:id/edit", (req, res) => {
   res.render("posts/edit", { post });
 });
 
-app.patch("posts/:id", (req, res) => {
+app.patch("/posts/:id", (req, res) => {
   const { id } = req.params;
-  const { title, content } = req.params;
+  const { title, content } = req.body;
   const post = posts.find((p) => p.id == id);
   if (post) {
     post.title = title;
@@ -67,7 +71,7 @@ app.patch("posts/:id", (req, res) => {
   res.redirect(`/posts/${id}`);
 });
 
-app.delete("posts/:id", (req, res) => {
+app.delete("/posts/:id", (req, res) => {
   const { id } = req.params;
   const idx = posts.find((p) => p.id == id);
   if (idx != -1) {
