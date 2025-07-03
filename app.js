@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
-  res.redirect('/posts')
+  res.redirect("/posts");
 });
 
 app.get("/posts", (req, res) => {
@@ -26,6 +26,18 @@ app.get("/feedback", (req, res) => {
   res.render("feedback", { feedbacks });
 });
 
-app.listen(3000,()=>{
-    console.log('Listening on port');
-})
+app.post("/posts", (req, res) => {
+  const { title, content } = req.body;
+  const newPost = {
+    id: uuidv4(),
+    title,
+    content,
+    createdAt: new Date().toLocaleString(),
+  };
+  posts.push(newPost);
+  res.redirect("/posts");
+});
+
+app.listen(3000, () => {
+  console.log("Listening on port");
+});

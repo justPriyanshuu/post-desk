@@ -4,17 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PostDesk</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <%- include('../partials/navbar') %>
 
-    <a href="/posts/new">+ Create New Post</a>
-    <% if (posts.length==0){ %>
-    <p>No Posts found..</p>
-    <% }else{ %>
-        <% for(let post of posts){ %>
-            <h2><%= post.title %></h2>
-    
+    <div class="container">
+      <div class="header">
+        <h1>All Blog Posts</h1>
+        <a class="create-btn" href="/posts/new">+ Create New Post</a>
+      </div>
+
+      <% if (posts.length === 0) { %>
+      <p>No Posts found...</p>
+      <% } else { %>
+      <div class="posts-list">
+        <% for (let post of posts) { %>
+        <div class="post-card">
+          <h2><%= post.title %></h2>
+          <p><%= post.content.slice(0, 100) %>...</p>
+          <p><small>Posted on: <%= post.createdAt %></small></p>
+          <a class="read-more" href="/posts/<%= post.id %>">Read More</a>
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+
     <%- include('../partials/footer') %>
   </body>
 </html>
