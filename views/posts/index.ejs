@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PostDesk</title>
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostDesk</title>
+  </head>
+  <body>
     <%- include('../partials/navbar') %>
+
+    <a href="/posts/new">+ Create New Post</a>
+    <% if (posts.length==0){ %>
+    <p>No Posts found..</p>
+    <% }else{ %>
+        <% for(let post of posts){ %>
+            <h2><%= post.title %></h2>
     
     <%- include('../partials/footer') %>
-</body>
+  </body>
 </html>
