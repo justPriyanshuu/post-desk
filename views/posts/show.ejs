@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= post.title %> - PostDesk</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container">
+      <h1><%= post.title %></h1>
+      <p><%= post.content %></p>
+      <p><small>Posted on: <%= post.createdAt %></small></p>
+
+      <a href="/posts">← Back to Posts</a>
+    </div>
+
+    <a href="/posts/<%= post.id %>/edit">✏️ Edit</a>
+    
+    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+      <button style="color: red">🗑️ Delete Post</button>
+    </form>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

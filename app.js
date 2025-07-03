@@ -38,6 +38,51 @@ app.post("/posts", (req, res) => {
   res.redirect("/posts");
 });
 
+app.get("/post/:id", (req, res) => {
+  const { id } = req.params;
+  const post = posts.find((p) => p.id == id);
+  if (!post) {
+    return res.status(404).send("Post not found");
+  }
+  res.render("posts/show", { post });
+});
+
+app.get("/post/:id/edit", (req, res) => {
+  const { id } = req.params;
+  const post = posts.find((p) => p.id == id);
+  if (!post) {
+    return res.status(404).send("Post not found");
+  }
+  res.render("posts/edit", { post });
+});
+
+app.patch("posts/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.params;
+  const post = posts.find((p) => p.id == id);
+  if (post) {
+    post.title = title;
+    post.content = content;
+  }
+  res.redirect(`/posts/${id}`);
+});
+
+app.delete("posts/:id", (req, res) => {
+  const { id } = req.params;
+  const idx = posts.find((p) => p.id == id);
+  if (idx != -1) {
+    posts.splice(idx, 1);
+  }
+  res.redirect("/posts");
+});
+
+app.post("/feedback", (req, res) => {
+  const { username, message } = req.body;
+  const newFeedback = { id: uuidv4(), username, message };
+  feedbacks.push(newFeedback);
+  res.redirect("/feedback");
+});
+
 app.listen(3000, () => {
   console.log("Listening on port");
 });

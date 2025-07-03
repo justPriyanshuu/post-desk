@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Feedback</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include("partials/navbar") %>
+
+    <div class="container">
+      <h2>Submit Your Feedback</h2>
+      <form action="/feedback" method="POST">
+        <input type="text" name="username" placeholder="Your name" required />
+        <textarea
+          name="message"
+          placeholder="Your feedback..."
+          required
+        ></textarea>
+        <button type="submit">Submit</button>
+      </form>
+
+      <hr />
+
+      <h3>All Feedbacks</h3>
+      <% if (feedbacks.length === 0) { %>
+      <p>No feedback yet.</p>
+      <% } else { %>
+      <ul>
+        <% feedbacks.forEach(fb => { %>
+        <li><strong><%= fb.username %>:</strong> <%= fb.message %></li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>
