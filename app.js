@@ -14,6 +14,10 @@ app.use(express.static(path.join("public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+app.get("/", (req, res) => {
+  res.redirect('/posts')
+});
+
 app.get("/posts", (req, res) => {
   res.render("posts/index", { posts });
 });
@@ -22,4 +26,6 @@ app.get("/feedback", (req, res) => {
   res.render("feedback", { feedbacks });
 });
 
-
+app.listen(3000,()=>{
+    console.log('Listening on port');
+})
