@@ -21,11 +21,12 @@
       <a href="/posts">← Back to Posts</a>
     </div>
 
-    <a href="/posts/<%= post.id %>/edit">✏️ Edit</a>
-
-    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
-      <button style="color: red">🗑️ Delete Post</button>
-    </form>
+    <div class="action-buttons">
+      <a href="/posts/<%= post.id %>/edit">✏️ Edit</a>
+      <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+        <button>🗑️ Delete Post</button>
+      </form>
+    </div>
 
     <%- include('../partials/footer') %>
   </body>
