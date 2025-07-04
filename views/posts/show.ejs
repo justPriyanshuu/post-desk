@@ -22,7 +22,7 @@
     </div>
 
     <div class="action-buttons">
-      <a href="/posts/<%= post.id %>/edit">✏️ Edit</a>
+      <a href="/posts/<%= post.id %>/edit" id="edit-btn">✏️ Edit</a>
       <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
         <button>🗑️ Delete Post</button>
       </form>
