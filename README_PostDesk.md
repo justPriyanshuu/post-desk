@@ -1,4 +1,4 @@
-# 📝 PostDesk
+📝 PostDesk
 
 **PostDesk** is a full-stack Express.js web application for managing blog posts and collecting user feedback. It features server-side rendering with EJS, full CRUD functionality for posts, and a feedback form system — all in a clean and modular architecture.
 
